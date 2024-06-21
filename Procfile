@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 vbtecnologi_backend - prueba/
+web: vendor/bin/heroku-php-apache2 htdocs/vbtecnologi_backend
