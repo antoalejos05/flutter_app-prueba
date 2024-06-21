@@ -1,7 +1,7 @@
 {
     "require": {
         "php": "^8.2.4",
-        "ext-grpc": "*",
+        "ext-grpc": "^1.64.1",
         "kreait/firebase-php": "^5.26",
         "google/cloud-firestore": "^1.41.1"
     }
