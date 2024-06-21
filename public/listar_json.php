@@ -22,7 +22,7 @@ $productos = array();
 // Recorrer los documentos y agregar cada producto al array
 foreach ($documents as $document) {
     $producto = $document->data();
-    $producto['id'] = $document->id();
+    $producto['nombre'] = $document->id();
     // Agregar el producto al array de productos
     $productos[] = $producto;
 }
