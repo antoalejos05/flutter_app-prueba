@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-grpc": "*",
         "kreait/firebase-php": "^5.26",
         "google/cloud-firestore": "^1.33.0"
