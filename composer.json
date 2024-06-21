@@ -3,6 +3,6 @@
         "php": "^8.2",
         "ext-grpc": "*",
         "kreait/firebase-php": "^5.26",
-        "google/cloud-firestore": "^1.44.0"
+        "google/cloud-firestore": "^1.33.0"
     }
 }
