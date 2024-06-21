@@ -1,1 +1,1 @@
-web: vendor/bin/php -S 0.0.0.0:$PORT -t public/
+web: vendor/bin/heroku-php-apache2 C:\xampp\htdocs\vbtecnologi_backend - prueba\public

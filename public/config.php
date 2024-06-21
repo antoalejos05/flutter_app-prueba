@@ -1,11 +1,20 @@
 <?php
 require 'vendor/autoload.php';
 
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
+use Google\Cloud\Firestore\FirestoreClient;
+// Inicializar Firestore
+$firestore = new FirestoreClient([
+    'projectId' => 'flutter-app-vbtecnologi'
+]);
 
-$firebase = (new Factory)
-    ->withServiceAccount(__DIR__.'C:\Users\Usuario\Desktop\VII CICLO\PROGRAMACION DE APLICACIONES MOVILES\clave privada firebase\flutter-app-vbtecnologi-firebase-adminsdk-2v7oc-b2ab6fa1c8.json');
+// Ejemplo de consulta a Firestore
+$collection = $firestore->collection('users');
+$documents = $collection->documents();
 
-$database = $firebase->createDatabase();
-?>
+foreach ($documents as $document) {
+    if ($document->exists()) {
+        printf('Document data: %s' . PHP_EOL, $document->data());
+    } else {
+        printf('Document %s does not exist' . PHP_EOL, $snapshot->id());
+    }
+}
