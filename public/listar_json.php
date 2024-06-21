@@ -3,38 +3,30 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-// Incluir archivo de configuración de la base de datos
-include 'config.php';
+// Incluir el SDK de Firebase y configuración
+require 'vendor/autoload.php';
+require 'config.php';
 
-// Consulta SQL para seleccionar todos los productos
-$sql = "SELECT * FROM productos";
-$result = $con->query($sql);
+// Obtener una instancia de Firestore
+$firestore = $firebas->getFirestore();
 
-// Verificar si se encontraron productos
-if ($result) {
-    // Inicializar un array para almacenar los productos
-    $productos = array();
+// Referencia a la colección "productos" en Firestore
+$collection = $firestore->collection('productos');
 
-    // Recorrer los resultados de la consulta y agregar cada producto al array
-    while($row = $result->fetch_assoc()) {
-        $producto = array(
-            "id" => $row["id_producto"],
-            "nombre" => $row["nomprodu"],
-            "descripcion" => $row["descripcion"],
-            "precio" => $row["precio"],
-            "stock" => $row["stock"]
-        );
-        // Agregar el producto al array de productos
-        $productos[] = $producto;
-    }
+// Consultar todos los documentos en la colección
+$documents = $collection->documents();
 
-    // Imprimir el array de productos como JSON
-    echo json_encode($productos);
-} else {
-    // Si no se encontraron productos, imprimir un mensaje de error como JSON
-    echo json_encode(array("message" => "No se encontraron productos"));
+// Inicializar un array para almacenar los productos
+$productos = array();
+
+// Recorrer los documentos y agregar cada producto al array
+foreach ($documents as $document) {
+    $producto = $document->data();
+    $producto['id'] = $document->id();
+    // Agregar el producto al array de productos
+    $productos[] = $producto;
 }
 
-// Cerrar la conexión a la base de datos
-$con->close();
+// Imprimir el array de productos como JSON
+echo json_encode($productos);
 ?>

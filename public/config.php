@@ -1,14 +1,11 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$contraseña = "";
-$bd = "vbtecnologi";
+require 'vendor/autoload.php';
 
-//creamos la conexion
-$con = new mysqli($servidor,$usuario,$contraseña,$bd);
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
-//verificamos la conexion
-if ($con->connect_error) {
-    die("Conexion Fallida: " . $con->connect_error);
-}
+$firebase = (new Factory)
+    ->withServiceAccount(__DIR__.'C:\Users\Usuario\Desktop\VII CICLO\PROGRAMACION DE APLICACIONES MOVILES\clave privada firebase\flutter-app-vbtecnologi-firebase-adminsdk-2v7oc-b2ab6fa1c8.json');
+
+$database = $firebase->createDatabase();
 ?>
